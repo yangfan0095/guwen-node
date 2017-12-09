@@ -4,9 +4,8 @@
 const mongoose = require('mongoose')
 const config = require('../config/conf')
 mongoose.Promise = global.Promise;
-
-// mongoose.connect(`mongodb://${config.localUrl}:${config.localPort}`, config.options)
-let conno = mongoose.createConnection('mongodb://localhost:27017/guwen', config.options);
+let url = `mongodb://${config.originIp}/${config.mongoDB.guwen}`;
+let conno = mongoose.createConnection(url, config.options);
 let db = mongoose.connection;
 db.on('connected', function () {
     console.log('mongodb connect success')

@@ -4,9 +4,8 @@
 const mongoose = require('mongoose')
 const config = require('../config/conf')
 mongoose.Promise = global.Promise;
-
-// mongoose.connect(`mongodb://${config.localUrl}:${config.localPort}`, config.options)
-let conno = mongoose.createConnection('mongodb://localhost:27017/guwenbookDB', config.options);
+let url = `mongodb://${config.originIp}/${config.mongoDB.guwenbook}`;
+let conno = mongoose.createConnection(url, config.options);
 let db = mongoose.connection;
 db.on('connected', function () {
     console.log(' guwenbookDB connect success')
