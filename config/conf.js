@@ -11,8 +11,8 @@ module.exports = {
     options: {
         server: { poolSize: 5 }
     },
-    // originIp:'47.52.115.169',
-    originIp:'localhost',
+    originIp:'47.52.115.169',
+    // originIp:'localhost',
 
 
 

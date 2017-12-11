@@ -7,7 +7,7 @@ mongoose.Promise = global.Promise;
 let url = `mongodb://${config.originIp}/${config.mongoDB.guwen}`;
 let conno = mongoose.createConnection(url, config.options);
 let db = mongoose.connection;
-db.on('connected', function () {
+db.on('connected', function() {
     console.log('mongodb connect success')
 })
 
