@@ -27,7 +27,7 @@ module.exports.booklist = async(ctx, next) => {
 module.exports.queryBook = async(ctx, next) => {
     console.log(ctx);
     let reqParam = ctx.request.query;
-    let page = Number(reqParam.page) || 1; //当前第几页
+    let page = Number(reqParam.start) || 1; //当前第几页
     let size = Number(reqParam.size) || 1; //每页显示的记录条数 默认查询一篇文章
     let dbName = reqParam.dbName || 'guwenbook0';
     //显示符合前端分页请求的列表查询
@@ -38,7 +38,7 @@ module.exports.queryBook = async(ctx, next) => {
             res = []
         } else {
             ctx.body = {
-                title: list
+                result: list
             }
         }
     })
