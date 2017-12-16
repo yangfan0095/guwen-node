@@ -3,6 +3,7 @@
  */
 const mongoose = require('mongoose')
 const config = require('../config/conf')
+const mongoosePaginate = require('mongoose-paginate')
 mongoose.Promise = global.Promise;
 let url = `mongodb://${config.originIp}/${config.mongoDB.guwenbook}`;
 let conno = mongoose.createConnection(url, config.options);
@@ -22,6 +23,7 @@ let bookItem = mongoose.Schema({
     translate: String,
     originUrl: String,
 })
+bookItem.plugin(mongoosePaginate);
 let model = (docName) => {
     return  conno.model(docName, bookItem);
 };

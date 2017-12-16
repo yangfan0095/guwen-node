@@ -2,6 +2,7 @@
  * guwen  db Model
  */
 const mongoose = require('mongoose')
+const mongoosePaginate = require('mongoose-paginate')
 const config = require('../config/conf')
 mongoose.Promise = global.Promise;
 let url = `mongodb://${config.originIp}/${config.mongoDB.guwen}`;
@@ -17,6 +18,7 @@ let bookMap = mongoose.Schema({
     bookUrl: String,
     bookDetail: String,
 })
+bookMap.plugin(mongoosePaginate);
 let booklist = conno.model('booklists', bookMap);
 
 module.exports = {
