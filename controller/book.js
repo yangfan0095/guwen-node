@@ -15,6 +15,7 @@ module.exports.booklist = async(ctx, next) => {
     //显示符合前端分页请求的列表查询
     // let query = booklist.find({}).limit(size).skip((page - 1) * size);
     const query = await booklist.paginate({}, {
+        select:'bookDetail bookName dbName -_id',
         page: page,
         limit: size,
         sort: {
@@ -55,6 +56,7 @@ module.exports.queryBook = async(ctx, next) => {
     let model = getModel(dbName);
 
     const query = await model.paginate({}, {
+        select:'-originUrl -__v -_id',
         page: page,
         limit: size,
         sort: {
@@ -82,14 +84,4 @@ module.exports.queryBook = async(ctx, next) => {
             message: '获取标签列表失败'
         })
     }
-    // let query = model.find({}).limit(size).skip((page - 1) * size);
-    // await query.exec(function (err, list) {
-    //     if (err) {
-    //         res = []
-    //     } else {
-    //         ctx.body = {
-    //             result: list
-    //         }
-    //     }
-    // })
 }
