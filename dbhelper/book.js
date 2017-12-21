@@ -13,14 +13,19 @@ class bookHelper {
      */
     static async queryBook(params) {
         const {
+            chapter,
+            select,
             dbName,
             size,
             page
         } = params;
         let res;
         let model = getModel(dbName);
-        await model.paginate({}, {
-            select: '-originUrl -__v -_id',
+        let queryObj = chapter ? {
+            chapter: chapter
+        } : {};
+        await model.paginate(queryObj, {
+            select,
             page: page,
             limit: size,
             sort: {
@@ -84,8 +89,23 @@ class bookHelper {
     /**
      * 查询书籍章节列表
      */
-    static async queryBookChapter() {
-
+    static async queryBookChapter(params) {
+        const {
+            dbName,
+        } = params;
+        let res;
+        let model = getModel(dbName);
+        await model.find({}, {
+            chapter: 1,
+            _id: 0
+        }, (err, query) => {
+            if (err) {
+                res = [];
+            } else {
+                res = query;
+            }
+        })
+        return res;
     }
 }
 

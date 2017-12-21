@@ -20,6 +20,7 @@ router.get('/json', async(ctx, next) => {
 })
 router.get('/booklist', bookActions.booklist);
 router.get('/book', bookActions.queryBook);
+router.get('/chapter', bookActions.queryBookChapter);
 
 
 module.exports = router
